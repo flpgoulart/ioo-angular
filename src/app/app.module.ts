@@ -7,8 +7,10 @@ import { HttpClientModule } from "@angular/common/http";
 
 // components imports
 import { AppComponent } from './app.component';
+import { CitiesComponent } from "./cities/cities.component";
 import { HomePageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
+
 // import { OccupationAreasComponent } from "./occupation-areas/occupation-areas.component";
 // import { OccupationAreaDetailComponent } from "./occupation-areas/occupation-area-detail/occupation-area-detail.component";
  import { SignInFormComponent } from './sign-in-form/sign-in-form.component'
@@ -22,7 +24,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 // services imports
  import { AuthService } from "./shared/auth.service";
-// import { OccupationAreaService } from "./occupation-areas/shared/occupation-area.service";
+ import { CityService } from "./cities/shared/city.service";
 // import { SocialEntityService } from "./social-entities/shared/social-entity.service";
 // import { TargetAudienceService } from './target-audiences/shared/target-audience.service';
  import { TokenService } from "./shared/token.service";
@@ -49,7 +51,7 @@ window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
     AppComponent,
     HomePageComponent,
     NavbarComponent,
-    // OccupationAreasComponent,
+    CitiesComponent,
     // OccupationAreaDetailComponent,
      SignInFormComponent,
      SignUpFormComponent,
@@ -73,7 +75,7 @@ window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
      AuthService,
     // IsAdminGuard,
      NotAuthenticatedGuard,
-    // OccupationAreaService,
+    CityService,
     // SocialEntityGuard,
     // SocialEntityService,
     // TargetAudienceService,

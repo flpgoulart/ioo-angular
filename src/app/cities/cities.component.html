@@ -1,0 +1,41 @@
+<h1 class="page-header">Lista de Cidades</h1>
+
+<div class="well">
+    <form (ngSubmit)="createCity()">
+        <div class="row">
+            <div class="col-md-10">
+                <input type="text" class="form-control" [(ngModel)]="newCity.name" name="name" placeholder="Digite aqui uma nova cidade">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success" type="submit">
+                    Adicionar Cidade
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let city of cities">
+            <td>{{ city.id }}</td>
+            <td>{{ city.name }}</td>
+            <td>
+                <a [routerLink]="['/cities', city.id]" class="btn btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    Detalhes
+                </a>
+                <button class="btn btn-danger" (click)="deleteCity(city)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Excluir
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
