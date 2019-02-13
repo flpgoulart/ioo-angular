@@ -1,0 +1,20 @@
+<h1 class="page-header">Painel de Controle</h1>
+
+
+<div *ngIf="currentUser" class="col l8 s12" >
+  <h3>Dados do usuário:</h3>  
+  
+    <ul class="collection grey-text text-darken-2">
+      <li class="collection-item">Email:  <b>{{currentUser.email}}</b></li>
+      <li class="collection-item">Nome:  <b>{{currentUser.name}}</b></li>
+      <li class="collection-item">Tipo:  <b>{{currentUser.userType}}</b></li>
+      <li class="collection-item">Id:  <b>{{currentUser.id}}</b></li>
+    </ul>
+
+    <div *ngIf="!currentUser.userType">
+      Seja bem vindo! <br>
+      Como você gostaria de participar?
+     
+    </div>
+
+  </div>
