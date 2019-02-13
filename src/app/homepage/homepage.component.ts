@@ -3,7 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../shared/auth.service";
 import { TokenService } from "../shared/token.service";
 
-import { UserSimple } from '../shared/user-simple.model';
+import { User } from '../shared/user.model';
 import { Token } from "../../../node_modules/@angular/compiler";
 
 @Component({
@@ -13,7 +13,7 @@ import { Token } from "../../../node_modules/@angular/compiler";
 
 export class HomePageComponent implements OnInit{
 
-    public currentUser: UserSimple;
+    public currentUser: User;
 
     public constructor(private authService: AuthService, tokenService: TokenService ){
 

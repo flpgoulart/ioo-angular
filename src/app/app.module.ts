@@ -71,10 +71,10 @@ window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
     AppRoutingModule
   ],
   providers: [
-     AuthGuard,
-     AuthService,
+    AuthGuard,
+    AuthService,
     // IsAdminGuard,
-     NotAuthenticatedGuard,
+    NotAuthenticatedGuard,
     CityService,
     // SocialEntityGuard,
     // SocialEntityService,

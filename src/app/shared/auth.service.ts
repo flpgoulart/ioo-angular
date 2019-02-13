@@ -7,7 +7,6 @@ import { catchError, map } from "rxjs/operators";
 import { TokenService } from "./token.service";
 
 import { User } from "./user.model";
-import { UserSimple } from "./user-simple.model";
 import { RegisterData } from "../../../node_modules/angular2-token";
 
 @Injectable()
@@ -38,7 +37,7 @@ export class AuthService{
     }
 
 
-    public getCurrentUser(): Observable<UserSimple> {
+    public getCurrentUser(): Observable<User> {
 
         return this.tokenService.get(this.userSimpleUrl).pipe(
             catchError(this.handleErrors),
@@ -67,12 +66,12 @@ export class AuthService{
     }
 
 
-    private responseToUserSimple(response: Response): UserSimple {
-        return new UserSimple(
+    private responseToUserSimple(response: Response): User {
+        return new User(
             response.json().data.name,
             response.json().data.email,
-            response.json().data.user_type,
-            response.json().data.id
+            response.json().data.password,
+            response.json().data.passwordConfirmation
         )
     }
 }

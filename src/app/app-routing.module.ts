@@ -38,7 +38,7 @@ const ROUTES = RouterModule.forRoot([
     // { path: 'volunteer-create', component: VolunteerCreateComponent, canActivate: [AuthGuard]},
     
     // // common area
-     { path: 'homepage', component: HomePageComponent, canActivate: [NotAuthenticatedGuard] },
+     { path: 'homepage', component: HomePageComponent, canActivate: [AuthGuard] },
      { path: '', redirectTo: '/homepage', pathMatch: 'full' },
 
   ])
