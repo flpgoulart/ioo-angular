@@ -1,41 +1,65 @@
-<h1 class="page-header">Lista de Cidades</h1>
 
-<div class="well">
-    <form (ngSubmit)="createCity()">
-        <div class="row">
-            <div class="col-md-10">
-                <input type="text" class="form-control" [(ngModel)]="newCity.name" name="name" placeholder="Digite aqui uma nova cidade">
-            </div>
-            <div class="col-md-2">
-                <button class="btn btn-success" type="submit">
-                    Adicionar Cidade
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let city of cities">
-            <td>{{ city.id }}</td>
-            <td>{{ city.name }}</td>
-            <td>
-                <a [routerLink]="['/cities', city.id]" class="btn btn-info">
+<h1 class="page-header">Lista de Cidades</h1>
+<a [routerLink]="['/cities', 0]" class="btn btn-info">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Adicionar
+</a>
+
+<div class="container mat-elevation-z8">
+
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+        </mat-form-field>
+    </div>
+            
+
+    <mat-table #table [dataSource]="dataSource" matSort >
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <!-- UF Column -->
+        <ng-container matColumnDef="uf">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> UF </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.uf}} </mat-cell>
+        </ng-container>
+
+        <!-- CEP Begin Column -->
+        <ng-container matColumnDef="cep_begin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> CEP Início </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.cep_begin}} </mat-cell>
+        </ng-container>
+            
+        <!-- CEP End Column -->
+        <ng-container matColumnDef="cep_end">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> CEP Fim </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.cep_end}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <a [routerLink]="['/cities', row.id]" class="btn btn-info">
                     <span class="glyphicon glyphicon-info-sign"></span>
                     Detalhes
                 </a>
-                <button class="btn btn-danger" (click)="deleteCity(city)">
+                <button class="btn btn-danger" (click)="deleteCity(row)">
                     <span class="glyphicon glyphicon-trash"></span>
                     Excluir
                 </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+            </mat-cell>
+        </ng-container>
+    
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    
+</div>
+

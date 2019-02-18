@@ -1,5 +1,7 @@
 //angular imports
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {CdkTableModule} from '@angular/cdk/table';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -7,34 +9,22 @@ import { HttpClientModule } from "@angular/common/http";
 
 // components imports
 import { AppComponent } from './app.component';
-import { CitiesComponent } from "./cities/cities.component";
 import { HomePageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-// import { OccupationAreasComponent } from "./occupation-areas/occupation-areas.component";
-// import { OccupationAreaDetailComponent } from "./occupation-areas/occupation-area-detail/occupation-area-detail.component";
- import { SignInFormComponent } from './sign-in-form/sign-in-form.component'
- import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
-// import { SocialEntitiesComponent } from "./social-entities/social-entities.component";
-// import { SocialEntityCreateComponent } from "./social-entities/social-entity-create/social-entity-create.component";
-// import { TargetAudiencesComponent } from "./target-audiences/target-audiences.component";
-// import { TargetAudienceDetailComponent } from "./target-audiences/target-audience-detail/target-audience-detail.component";
-// import { VolunteersComponent } from "./volunteers/volunteers.component";
-// import { VolunteerCreateComponent } from "./volunteers/volunteer-create/volunteer-create.component";
+import { CitiesComponent } from "./cities/cities.component";
+import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component'
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
- import { AuthService } from "./shared/auth.service";
- import { CityService } from "./cities/shared/city.service";
-// import { SocialEntityService } from "./social-entities/shared/social-entity.service";
-// import { TargetAudienceService } from './target-audiences/shared/target-audience.service';
- import { TokenService } from "./shared/token.service";
-// import { VolunteerService } from "./volunteers/shared/volunteer.service";
+import { AuthService } from "./shared/auth.service";
+import { CityService } from "./cities/shared/city.service";
+import { TokenService } from "./shared/token.service";
 
 // guards imports
- import { AuthGuard } from "./guards/auth.guard";
-// import { IsAdminGuard } from "./guards/is-admin.guard";
- import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
-// import { SocialEntityGuard } from "./guards/social-entity.guard";
+import { AuthGuard } from "./guards/auth.guard";
+import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 // modules imports
 import { AppRoutingModule } from "./app-routing.module";
@@ -44,6 +34,40 @@ import * as $ from 'jquery';
 import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
 window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
 
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatStepperModule,
+} from '@angular/material';
 
 //-----------------------------
 @NgModule({
@@ -52,15 +76,9 @@ window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
     HomePageComponent,
     NavbarComponent,
     CitiesComponent,
-    // OccupationAreaDetailComponent,
-     SignInFormComponent,
-     SignUpFormComponent,
-    // SocialEntitiesComponent,
-    // SocialEntityCreateComponent,
-    // TargetAudiencesComponent,
-    // TargetAudienceDetailComponent,
-    // VolunteersComponent,
-    // VolunteerCreateComponent
+    CityDetailComponent,
+    SignInFormComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,
@@ -68,19 +86,29 @@ window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule
+
   ],
   providers: [
     AuthGuard,
     AuthService,
-    // IsAdminGuard,
     NotAuthenticatedGuard,
     CityService,
-    // SocialEntityGuard,
-    // SocialEntityService,
-    // TargetAudienceService,
-    TokenService,
-    // VolunteerService
+    TokenService
   ],
   bootstrap: [AppComponent]
 })

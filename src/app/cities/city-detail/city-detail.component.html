@@ -1,0 +1,71 @@
+<div *ngIf="controle">
+  <h1 class="page-header">Detalhes da Cidade: {{ city.name }}</h1>
+</div>
+
+<div *ngIf="!controle">
+  <h1 class="page-header">Adicionar uma nova Cidade</h1>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="submitCity()">
+
+  <div class="row">
+    <!-- cityName -->
+    <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+      <label for="name" class="control-label">Nome</label>
+      <input type="text" formControlName="name" id="name" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+      <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+        <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+        <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+        <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- cityCEPBegin -->
+    <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('cep_begin')">
+      <label for="cep_begin" class="control-label">CEP Início</label>
+      <input type="text" formControlName="cep_begin" id="cep_begin" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('cep_begin')"></span>
+
+      <div *ngIf="formUtils.showFieldError('cep_begin')" class="text-danger">
+        <div *ngIf="form.get('cep_begin').errors.required">precisa ser preenchido!</div>
+        <div *ngIf="form.get('cep_begin').errors.minlength">deve ter no mínimo 5 caracteres</div>
+        <div *ngIf="form.get('cep_begin').errors.maxlength">deve ter no máximo 8 caracteres</div>
+      </div>
+    </div>
+    <!-- cityCEPEnd -->
+    <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('cep_end')">
+      <label for="cep_end" class="control-label">CEP Fim</label>
+      <input type="text" formControlName="cep_end" id="cep_end" class="form-control">
+      <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('cep_end')"></span>
+
+      <div *ngIf="formUtils.showFieldError('cep_end')" class="text-danger">
+        <div *ngIf="form.get('cep_end').errors.required">precisa ser preenchido!</div>
+        <div *ngIf="form.get('cep_end').errors.minlength">deve ter no mínimo 5 caracteres</div>
+        <div *ngIf="form.get('cep_end').errors.maxlength">deve ter no máximo 8 caracteres</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- cityUF -->
+      <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('uf')">
+        <label for="uf" class="control-label">Estado</label>
+        <select formControlName="uf" id="uf" class="form-control input-lg">
+          <option  *ngFor="let ufOption of ufOptions" [value]="ufOption.value">{{ufOption.text}}</option>
+        </select>
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('uf')"></span>
+        <div *ngIf="formUtils.showFieldError('uf')" class="text-danger">Este campo precisa ser preenchido</div>
+      </div>
+  
+  </div>
+
+  <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+  <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+
+</form>
+

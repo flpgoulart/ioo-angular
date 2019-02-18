@@ -96,8 +96,8 @@ export class CityService{
             let city = new City(
                 item.id,
                 item.attributes.name,
-                item.attributes.cep_begin,
-                item.attributes.cep_end,
+                item.attributes['cep-begin'],
+                item.attributes['cep-end'],
                 item.attributes.uf
             )
 
@@ -112,8 +112,8 @@ export class CityService{
         return new City(
             response.json().data.id,
             response.json().data.attributes.name,
-            response.json().data.attributes.cep_begin,
-            response.json().data.attributes.cep_end,
+            response.json().data.attributes['cep-begin'],
+            response.json().data.attributes['cep-end'],
             response.json().data.attributes.uf
         )
     }

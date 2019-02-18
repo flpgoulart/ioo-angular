@@ -2,8 +2,7 @@ import { FormGroup } from "@angular/forms";
 
 export class FormUtils {
 
-    public constructor(private form: FormGroup)
-        { }
+    public constructor(private form: FormGroup) { }
 
 
     public showFieldError(fieldName: string): boolean {
@@ -33,4 +32,5 @@ export class FormUtils {
         return this.form.get(fieldName);
     }
 
+    
 }

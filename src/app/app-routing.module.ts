@@ -3,9 +3,9 @@ import { RouterModule } from "@angular/router";
 
 import { HomePageComponent } from './homepage/homepage.component';
 import { CitiesComponent } from "./cities/cities.component";
-// import { OccupationAreaDetailComponent } from './occupation-areas/occupation-area-detail/occupation-area-detail.component';
- import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
- import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
+import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 // import { SocialEntitiesComponent } from "./social-entities/social-entities.component";
 // import { SocialEntityCreateComponent } from "./social-entities/social-entity-create/social-entity-create.component";
 // import { TargetAudiencesComponent } from "./target-audiences/target-audiences.component";
@@ -20,10 +20,8 @@ import { CitiesComponent } from "./cities/cities.component";
 
 const ROUTES = RouterModule.forRoot([
     //admin area
-    //{ path: 'cities/:id', component: OccupationAreaDetailComponent, canActivate: [IsAdminGuard] },
-    { path: 'cities',     component: CitiesComponent },
-    // { path: 'target-audiences/:id', component: TargetAudienceDetailComponent, canActivate: [IsAdminGuard] },
-    // { path: 'target-audiences',     component: TargetAudiencesComponent, canActivate: [IsAdminGuard] },
+    { path: 'cities/:id', component: CityDetailComponent, canActivate: [AuthGuard] },
+    { path: 'cities',     component: CitiesComponent, canActivate: [AuthGuard] },
 
     //user area
      { path: 'sign-in',   component: SignInFormComponent, canActivate: [NotAuthenticatedGuard] },
