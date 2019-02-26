@@ -1,7 +1,6 @@
 //angular imports
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {CdkTableModule} from '@angular/cdk/table';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -24,6 +23,7 @@ import { TokenService } from "./shared/token.service";
 
 // guards imports
 import { AuthGuard } from "./guards/auth.guard";
+import { AdminGuard } from "./guards/admin.guard";
 import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 // modules imports
@@ -105,6 +105,7 @@ import {
   ],
   providers: [
     AuthGuard,
+    AdminGuard,
     AuthService,
     NotAuthenticatedGuard,
     CityService,

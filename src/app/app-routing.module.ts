@@ -6,22 +6,16 @@ import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
-// import { SocialEntitiesComponent } from "./social-entities/social-entities.component";
-// import { SocialEntityCreateComponent } from "./social-entities/social-entity-create/social-entity-create.component";
-// import { TargetAudiencesComponent } from "./target-audiences/target-audiences.component";
-// import { TargetAudienceDetailComponent } from "./target-audiences/target-audience-detail/target-audience-detail.component";
-// import { VolunteersComponent } from "./volunteers/volunteers.component";
-// import { VolunteerCreateComponent } from "./volunteers/volunteer-create/volunteer-create.component";
 
  import { AuthGuard } from "./guards/auth.guard";
-// import { IsAdminGuard } from "./guards/is-admin.guard";
+ import { AdminGuard } from "./guards/admin.guard";
  import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 // import { SocialEntityGuard } from "./guards/social-entity.guard";
 
 const ROUTES = RouterModule.forRoot([
     //admin area
-    { path: 'cities/:id', component: CityDetailComponent, canActivate: [AuthGuard] },
-    { path: 'cities',     component: CitiesComponent, canActivate: [AuthGuard] },
+    { path: 'cities/:id', component: CityDetailComponent, canActivate: [AdminGuard] },
+    { path: 'cities',     component: CitiesComponent, canActivate: [AdminGuard] },
 
     //user area
      { path: 'sign-in',   component: SignInFormComponent, canActivate: [NotAuthenticatedGuard] },

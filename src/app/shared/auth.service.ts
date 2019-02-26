@@ -4,6 +4,7 @@ import { Response } from "@angular/http";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
+
 import { TokenService } from "./token.service";
 
 import { User } from "./user.model";
@@ -13,6 +14,7 @@ import { RegisterData } from "../../../node_modules/angular2-token";
 
 export class AuthService{
     public userSimpleUrl = "auth/validate_token";
+    public isAdmin: boolean;
 
     public constructor(private tokenService: TokenService) { }
 
@@ -36,6 +38,13 @@ export class AuthService{
             
     }
 
+    public isUserAdmin(): boolean {
+        if (localStorage.getItem("userType") == "A") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public getCurrentUser(): Observable<User> {
 
@@ -43,7 +52,7 @@ export class AuthService{
             catchError(this.handleErrors),
             map((response: Response) => this.responseToUserSimple(response) )
         )
-            
+
     }
 
 
@@ -59,7 +68,6 @@ export class AuthService{
         return this.tokenService.userSignedIn();
     }
 
-
     private handleErrors(error: Response) {
         console.log("SALVANDO O ERRO NUM ARQUIVO DE LOG - DETALHES DO ERRO => ", error);
         return Observable.throw(error);
@@ -67,11 +75,14 @@ export class AuthService{
 
 
     private responseToUserSimple(response: Response): User {
+
         return new User(
             response.json().data.name,
             response.json().data.email,
             response.json().data.password,
-            response.json().data.passwordConfirmation
+            response.json().data['passwordConfirmation'],
+            response.json().data.user_type,
+            response.json().data.id 
         )
     }
 }

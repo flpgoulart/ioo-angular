@@ -7,14 +7,18 @@
     <ul class="collection grey-text text-darken-2">
       <li class="collection-item">Email:  <b>{{currentUser.email}}</b></li>
       <li class="collection-item">Nome:  <b>{{currentUser.name}}</b></li>
-      <li class="collection-item">Tipo:  <b>{{currentUser.userType}}</b></li>
+      <li class="collection-item">Tipo:  <b>{{currentUser.user_type}}</b></li>
       <li class="collection-item">Id:  <b>{{currentUser.id}}</b></li>
     </ul>
 
-    <div *ngIf="!currentUser.userType">
+    <div *ngIf="!currentUser.user_type">
       Seja bem vindo! <br>
       Como você gostaria de participar?
      
     </div>
+    <button class="btn btn-danger" (click)="signOutUser()">
+        <span class="glyphicon glyphicon-log-out"></span>
+        Sair
+      </button>
 
   </div>

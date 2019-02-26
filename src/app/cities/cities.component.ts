@@ -46,7 +46,7 @@ export class CitiesComponent implements AfterViewInit {
                         this.listCities();
                         this.changeDetectorRefs.detectChanges();
                     },
-                    () => alert("Ocorreu um erro ao excluir, tente novamente mais tarde.")
+                    error => alert("Ocorreu um erro ao excluir. Erro: " + error)
                 )
         }
     }
@@ -58,7 +58,7 @@ export class CitiesComponent implements AfterViewInit {
             this.cities = cities.sort((a, b) => b.id - a.id);
             this.dataSource.data = this.cities;
         },
-            error => alert("Ocorreu um erro ao listar, tente novamente mais tarde.")
+            error => alert("Ocorreu um erro ao listar. Erro: " + error ) 
         )
 
     }
