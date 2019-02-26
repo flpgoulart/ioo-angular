@@ -1,6 +1,6 @@
 //angular imports
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { CategoriesComponent } from "./categories/categories.component";
+import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
@@ -20,6 +22,7 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
 import { AuthService } from "./shared/auth.service";
+import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
 import { UnitMeasureService } from "./unit-measures/shared/unit-measure.service";
 import { TokenService } from "./shared/token.service";
@@ -78,6 +81,8 @@ import {
     AppComponent,
     HomePageComponent,
     NavbarComponent,
+    CategoriesComponent,
+    CategoryDetailComponent,
     CitiesComponent,
     CityDetailComponent,
     UnitMeasuresComponent,
@@ -113,6 +118,7 @@ import {
     AdminGuard,
     AuthService,
     NotAuthenticatedGuard,
+    CategoryService,
     CityService,
     UnitMeasureService,
     TokenService

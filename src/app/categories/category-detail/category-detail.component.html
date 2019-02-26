@@ -1,0 +1,59 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Detalhes da Categoria: {{ category.name }}</h1>
+  </div>
+  
+  <div *ngIf="!controle">
+    <h1 class="page-header">Adicionar uma nova Categoria</h1>
+  </div>
+  
+  
+  <form [formGroup]="form" (ngSubmit)="submitCategory()">
+  
+    <div class="row">
+      <!-- categoryName -->
+      <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+        <label for="name" class="control-label">Nome</label>
+        <input type="text" formControlName="name" id="name" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+          <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+          <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <!-- categoryDescription -->
+    <div class="form-group col-md-12 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('description')">
+        <label for="description" class="control-label">Descrição</label>
+        <textarea formControlName="description" id="description" class="form-control input-lg" rows="4" ></textarea>
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('description')"></span>
+        <div *ngIf="formUtils.showFieldError('description')" class="text-danger">
+            <div *ngIf="form.get('description').errors.required">precisa ser preenchido!</div>
+            <div *ngIf="form.get('description').errors.minlength">deve ter no mínimo 2 caracteres</div>
+            <div *ngIf="form.get('description').errors.maxlength">deve ter no máximo 255 caracteres</div>
+        </div>
+    </div>
+
+      <!-- categoryLogo -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('logo')">
+        <label for="logo" class="control-label">Logo</label>
+        <input type="text" formControlName="logo" id="logo" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('logo')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('logo')" class="text-danger">
+          <div *ngIf="form.get('logo').errors.required">precisa ser preenchido!</div>
+          <div *ngIf="form.get('logo').errors.minlength">deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('logo').errors.maxlength">deve ter no máximo 30 caracteres</div>
+        </div>
+      </div>
+    </div>
+  
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+  
+  </form>
+  
+  

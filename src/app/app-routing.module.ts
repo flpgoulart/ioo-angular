@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { HomePageComponent } from './homepage/homepage.component';
+import { CategoriesComponent } from "./categories/categories.component";
+import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
@@ -12,18 +14,19 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
  import { AuthGuard } from "./guards/auth.guard";
  import { AdminGuard } from "./guards/admin.guard";
  import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
-// import { SocialEntityGuard } from "./guards/social-entity.guard";
 
 const ROUTES = RouterModule.forRoot([
     //admin area
+    { path: 'categories/:id', component: CategoryDetailComponent, canActivate: [AdminGuard] },
+    { path: 'categories',     component: CategoriesComponent, canActivate: [AdminGuard] },
     { path: 'cities/:id', component: CityDetailComponent, canActivate: [AdminGuard] },
     { path: 'cities',     component: CitiesComponent, canActivate: [AdminGuard] },
     { path: 'unit-measures/:id', component: UnitMeasureDetailComponent, canActivate: [AdminGuard] },
     { path: 'unit-measures',     component: UnitMeasuresComponent, canActivate: [AdminGuard] },
 
-    //user area
-     { path: 'sign-in',   component: SignInFormComponent, canActivate: [NotAuthenticatedGuard] },
-     { path: 'sign-up',   component: SignUpFormComponent, canActivate: [NotAuthenticatedGuard] },
+    //login/logon area
+    { path: 'sign-in',   component: SignInFormComponent, canActivate: [NotAuthenticatedGuard] },
+    { path: 'sign-up',   component: SignUpFormComponent, canActivate: [NotAuthenticatedGuard] },
 
     // // user area - social entity
     // { path: 'social-entities', component: SocialEntitiesComponent, canActivate: [AuthGuard]},
