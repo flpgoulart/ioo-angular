@@ -1,0 +1,32 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Detalhes da Unidade de Medida: {{ unit_measure.name }}</h1>
+  </div>
+  
+  <div *ngIf="!controle">
+    <h1 class="page-header">Adicionar uma nova Unidade de Medida</h1>
+  </div>
+  
+  
+  <form [formGroup]="form" (ngSubmit)="submitUnitMeasure()">
+  
+    <div class="row">
+      <!-- unitMeasureName -->
+      <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+        <label for="name" class="control-label">Nome</label>
+        <input type="text" formControlName="name" id="name" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+          <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+          <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+        </div>
+      </div>
+    </div>
+  
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+  
+  </form>
+  
+  

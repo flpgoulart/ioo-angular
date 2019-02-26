@@ -13,12 +13,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
+import { UnitMeasureDetailComponent } from "./unit-measures/unit-measure-detail/unit-measure-detail.component";
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component'
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
 import { AuthService } from "./shared/auth.service";
 import { CityService } from "./cities/shared/city.service";
+import { UnitMeasureService } from "./unit-measures/shared/unit-measure.service";
 import { TokenService } from "./shared/token.service";
 
 // guards imports
@@ -77,6 +80,8 @@ import {
     NavbarComponent,
     CitiesComponent,
     CityDetailComponent,
+    UnitMeasuresComponent,
+    UnitMeasureDetailComponent,
     SignInFormComponent,
     SignUpFormComponent
   ],
@@ -109,6 +114,7 @@ import {
     AuthService,
     NotAuthenticatedGuard,
     CityService,
+    UnitMeasureService,
     TokenService
   ],
   bootstrap: [AppComponent]

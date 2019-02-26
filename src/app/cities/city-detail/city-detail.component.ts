@@ -123,7 +123,7 @@ export class CityDetailComponent implements OnInit {
     
             this.cityService.update(this.city)
             .subscribe(
-                () => alert("Cidade atualizada com sucesso!"),
+                () => alert("Dados atualizados com sucesso!"),
                 error => alert("Ocorreu um erro ao gravar. Erro: " + error)
             )
     
@@ -133,12 +133,12 @@ export class CityDetailComponent implements OnInit {
             this.city.name = this.city.name.trim();
 
             if (!this.city.name) {
-                alert("A Cidade deve ter um nome!")
+                alert("O registro deve ter um nome!")
             } else {
                 this.cityService.create(this.city)
                     .subscribe(
                         (city) => {
-                            alert("Cidade cadastrada com sucesso!");
+                            alert("Dados cadastrados com sucesso!");
                             this.controle = true;
                             this.location.back();
                         },

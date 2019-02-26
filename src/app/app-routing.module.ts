@@ -4,6 +4,8 @@ import { RouterModule } from "@angular/router";
 import { HomePageComponent } from './homepage/homepage.component';
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
+import { UnitMeasureDetailComponent } from "./unit-measures/unit-measure-detail/unit-measure-detail.component";
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
@@ -16,6 +18,8 @@ const ROUTES = RouterModule.forRoot([
     //admin area
     { path: 'cities/:id', component: CityDetailComponent, canActivate: [AdminGuard] },
     { path: 'cities',     component: CitiesComponent, canActivate: [AdminGuard] },
+    { path: 'unit-measures/:id', component: UnitMeasureDetailComponent, canActivate: [AdminGuard] },
+    { path: 'unit-measures',     component: UnitMeasuresComponent, canActivate: [AdminGuard] },
 
     //user area
      { path: 'sign-in',   component: SignInFormComponent, canActivate: [NotAuthenticatedGuard] },
