@@ -6,6 +6,8 @@ import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { SubcategoriesComponent } from "./subcategories/subcategories.component";
+import { SubcategoryDetailComponent } from "./subcategories/subcategory-detail/subcategory-detail.component";
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
 import { UnitMeasureDetailComponent } from "./unit-measures/unit-measure-detail/unit-measure-detail.component";
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
@@ -17,10 +19,12 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
 const ROUTES = RouterModule.forRoot([
     //admin area
-    { path: 'categories/:id', component: CategoryDetailComponent, canActivate: [AdminGuard] },
-    { path: 'categories',     component: CategoriesComponent, canActivate: [AdminGuard] },
-    { path: 'cities/:id', component: CityDetailComponent, canActivate: [AdminGuard] },
-    { path: 'cities',     component: CitiesComponent, canActivate: [AdminGuard] },
+    { path: 'categories/:id',    component: CategoryDetailComponent, canActivate: [AdminGuard] },
+    { path: 'categories',        component: CategoriesComponent, canActivate: [AdminGuard] },
+    { path: 'cities/:id',        component: CityDetailComponent, canActivate: [AdminGuard] },
+    { path: 'cities',            component: CitiesComponent, canActivate: [AdminGuard] },
+    { path: 'subcategories/:id', component: SubcategoryDetailComponent, canActivate: [AdminGuard] },
+    { path: 'subcategories',     component: SubcategoriesComponent, canActivate: [AdminGuard] },
     { path: 'unit-measures/:id', component: UnitMeasureDetailComponent, canActivate: [AdminGuard] },
     { path: 'unit-measures',     component: UnitMeasuresComponent, canActivate: [AdminGuard] },
 
