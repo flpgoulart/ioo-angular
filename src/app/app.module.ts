@@ -80,6 +80,10 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
+import { StoreType } from './store-types/shared/store-type.model';
+import { StoreTypesComponent } from './store-types/store-types.component';
+import { StoreTypeDetailComponent } from './store-types/store-type-detail/store-type-detail.component';
+import { StoreTypeService } from './store-types/shared/store-type.service';
 
 //-----------------------------
 @NgModule({
@@ -93,6 +97,8 @@ import {
     CityDetailComponent,
     ProductsComponent,
     ProductDetailComponent,
+    StoreTypesComponent,
+    StoreTypeDetailComponent,
     SubcategoriesComponent,
     SubcategoryDetailComponent,
     UnitMeasuresComponent,
@@ -131,6 +137,7 @@ import {
     CategoryService,
     CityService,
     ProductService,
+    StoreTypeService,
     SubcategoryService,
     UnitMeasureService,
     TokenService

@@ -8,6 +8,8 @@ import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
 import { ProductsComponent } from "./products/products.component";
 import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
+import { StoreTypesComponent } from "./store-types/store-types.component";
+import { StoreTypeDetailComponent } from "./store-types/store-type-detail/store-type-detail.component";
 import { SubcategoriesComponent } from "./subcategories/subcategories.component";
 import { SubcategoryDetailComponent } from "./subcategories/subcategory-detail/subcategory-detail.component";
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
@@ -27,6 +29,8 @@ const ROUTES = RouterModule.forRoot([
     { path: 'cities',            component: CitiesComponent, canActivate: [AdminGuard] },
     { path: 'products/:id',      component: ProductDetailComponent, canActivate: [AdminGuard] },
     { path: 'products',          component: ProductsComponent, canActivate: [AdminGuard] },
+    { path: 'store-types/:id',   component: StoreTypeDetailComponent, canActivate: [AdminGuard] },
+    { path: 'store-types',       component: StoreTypesComponent, canActivate: [AdminGuard] },
     { path: 'subcategories/:id', component: SubcategoryDetailComponent, canActivate: [AdminGuard] },
     { path: 'subcategories',     component: SubcategoriesComponent, canActivate: [AdminGuard] },
     { path: 'unit-measures/:id', component: UnitMeasureDetailComponent, canActivate: [AdminGuard] },
