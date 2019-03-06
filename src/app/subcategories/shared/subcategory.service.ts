@@ -81,6 +81,14 @@ export class SubcategoryService{
             
     }
 
+    public searchByCategory(category_id: number): Observable<Subcategory[]> {
+        let url = `${this.subcategoriesUrl}?q[category_id_eq]=${category_id}`;
+
+        return this.tokenHttp.get(url).pipe(
+            catchError(this.handleErrors),
+            map((response: Response) => this.responseToSubcategories(response) )
+        )
+    }
 
     private handleErrors(error: Response){
         console.log("SALVANDO O ERRO NUM ARQUIVO DE LOG - DETALHES DO ERRO => ", error );

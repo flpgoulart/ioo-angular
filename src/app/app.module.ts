@@ -15,6 +15,8 @@ import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { ProductsComponent } from "./products/products.component";
+import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
 import { SubcategoriesComponent } from "./subcategories/subcategories.component";
 import { SubcategoryDetailComponent } from "./subcategories/subcategory-detail/subcategory-detail.component";
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
@@ -26,6 +28,7 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 import { AuthService } from "./shared/auth.service";
 import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
+import { ProductService } from "./products/shared/product.service";
 import { SubcategoryService } from "./subcategories/shared/subcategory.service";
 import { UnitMeasureService } from "./unit-measures/shared/unit-measure.service";
 import { TokenService } from "./shared/token.service";
@@ -88,6 +91,8 @@ import {
     CategoryDetailComponent,
     CitiesComponent,
     CityDetailComponent,
+    ProductsComponent,
+    ProductDetailComponent,
     SubcategoriesComponent,
     SubcategoryDetailComponent,
     UnitMeasuresComponent,
@@ -125,6 +130,7 @@ import {
     NotAuthenticatedGuard,
     CategoryService,
     CityService,
+    ProductService,
     SubcategoryService,
     UnitMeasureService,
     TokenService

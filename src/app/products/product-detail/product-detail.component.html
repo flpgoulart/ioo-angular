@@ -1,0 +1,110 @@
+<div *ngIf="controle">
+        <h1 class="page-header">Detalhes do Produto: {{ product.name }}</h1>
+      </div>
+      
+      <div *ngIf="!controle">
+        <h1 class="page-header">Adicionar um novo Produto</h1>
+      </div>
+      
+      
+      <form [formGroup]="form" (ngSubmit)="submitProduct()">
+    
+        <div *ngIf="controle">
+          
+            <div class="row">
+                <!-- productCategorySubcategory -->
+                <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('subcategory_name')">
+                  <label for="subcategory_name" class="control-label">Categoria/Subcategoria </label>
+                  <input type="text" formControlName="subcategory_name" id="subcategory_name" class="form-control" readonly>
+                  <input type="hidden" formControlName="subcategory_id" id="subcategory_id">
+                </div>
+              </div>
+        </div>
+        
+        <div *ngIf="!controle">
+          <div class="row">
+              <!-- productCategoryId -->
+              <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('category_id')">
+                  <label for="category_id" class="control-label">Categoria</label>
+      
+                  <select formControlName="category_id" id="category_id" #category_id class="form-control input-lg"  (change)="listSubcategories(category_id.value)">
+                      <option  *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                  </select>
+                  
+                  <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('category_id')"></span>
+      
+                  <div *ngIf="formUtils.showFieldError('category_id')" class="text-danger">
+                      <div *ngIf="form.get('category_id').errors.required">a categoria precisa ser preenchida!</div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <!-- productSubCategoryId -->
+              <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('subcategory_id')">
+                  <label for="subcategory_id" class="control-label">Subcategoria</label>
+
+                  <select formControlName="subcategory_id" id="subcategory_id" class="form-control input-lg">
+                      <option  *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{subcategory.name}}</option>
+                  </select>
+
+                  <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('subcategory_id')"></span>
+
+                  <div *ngIf="formUtils.showFieldError('subcategory_id')" class="text-danger">
+                      <div *ngIf="form.get('subcategory_id').errors.required">a subcategoria precisa ser preenchida!</div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <!-- productName -->
+          <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+            <label for="name" class="control-label">Nome</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+      
+            <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+              <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+              <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+              <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <!-- productKeywords -->
+          <div class="form-group col-md-12 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('keywords')">
+              <label for="keywords" class="control-label">Palavras-Chave</label>
+              <textarea formControlName="keywords" id="keywords" class="form-control input-lg" rows="4" ></textarea>
+              <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('keywords')"></span>
+              <div *ngIf="formUtils.showFieldError('keywords')" class="text-danger">
+                  <div *ngIf="form.get('keywords').errors.required">precisa ser preenchido!</div>
+                  <div *ngIf="form.get('keywords').errors.minlength">deve ter no mínimo 2 caracteres</div>
+                  <div *ngIf="form.get('keywords').errors.maxlength">deve ter no máximo 255 caracteres</div>
+              </div>
+          </div>
+        </div>
+    
+        <div class="row">
+          <!-- productLogoDefault -->
+          <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('logo_default')">
+            <label for="logo_default" class="control-label">Logo</label>
+            <input type="text" formControlName="logo_default" id="logo_default" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('logo_default')"></span>
+      
+            <div *ngIf="formUtils.showFieldError('logo_default')" class="text-danger">
+              <div *ngIf="form.get('logo_default').errors.required">precisa ser preenchido!</div>
+              <div *ngIf="form.get('logo_default').errors.minlength">deve ter no mínimo 2 caracteres</div>
+              <div *ngIf="form.get('logo_default').errors.maxlength">deve ter no máximo 30 caracteres</div>
+            </div>
+          </div>
+        </div>
+      
+      
+        <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+        <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+      
+      </form>
+      
+      

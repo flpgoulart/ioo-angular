@@ -1,0 +1,59 @@
+
+<h1 class="page-header">Lista de Produtos</h1>
+<a [routerLink]="['/products', 0]" class="btn btn-info">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Adicionar
+</a>
+
+<div class="container mat-elevation-z8">
+
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+        </mat-form-field>
+    </div>
+            
+
+    <mat-table #table [dataSource]="dataSource" matSort >
+
+        <!-- Subcategory Name Column -->
+        <ng-container matColumnDef="subcategory_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Categoria/Subcategoria</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.subcategory_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Produto </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <!-- keywords Column -->
+        <ng-container matColumnDef="keywords">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Keywords </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.keywords}} </mat-cell>
+        </ng-container>
+            
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <a [routerLink]="['/products', row.id]" class="btn btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    Detalhes
+                </a>
+                <button class="btn btn-danger" (click)="deleteProduct(row)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Excluir
+                </button>
+            </mat-cell>
+        </ng-container>
+    
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    
+</div>
+
