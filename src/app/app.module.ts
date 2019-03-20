@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { AccountComponent } from "./account/account.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -19,6 +20,8 @@ import { ProductsComponent } from "./products/products.component";
 import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
 import { SubcategoriesComponent } from "./subcategories/subcategories.component";
 import { SubcategoryDetailComponent } from "./subcategories/subcategory-detail/subcategory-detail.component";
+import { StoreTypesComponent } from './store-types/store-types.component';
+import { StoreTypeDetailComponent } from './store-types/store-type-detail/store-type-detail.component';
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
 import { UnitMeasureDetailComponent } from "./unit-measures/unit-measure-detail/unit-measure-detail.component";
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component'
@@ -26,16 +29,19 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
 import { AuthService } from "./shared/auth.service";
+import { BusinessAccountService } from "./account/shared/business-account.service";
 import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
 import { ProductService } from "./products/shared/product.service";
 import { SubcategoryService } from "./subcategories/shared/subcategory.service";
+import { StoreTypeService } from './store-types/shared/store-type.service';
 import { UnitMeasureService } from "./unit-measures/shared/unit-measure.service";
 import { TokenService } from "./shared/token.service";
 
 // guards imports
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminGuard } from "./guards/admin.guard";
+import { BusinessGuard } from "./guards/business.guard";
 import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 // modules imports
@@ -80,10 +86,6 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
-import { StoreType } from './store-types/shared/store-type.model';
-import { StoreTypesComponent } from './store-types/store-types.component';
-import { StoreTypeDetailComponent } from './store-types/store-type-detail/store-type-detail.component';
-import { StoreTypeService } from './store-types/shared/store-type.service';
 
 //-----------------------------
 @NgModule({
@@ -91,6 +93,7 @@ import { StoreTypeService } from './store-types/shared/store-type.service';
     AppComponent,
     HomePageComponent,
     NavbarComponent,
+    AccountComponent,
     CategoriesComponent,
     CategoryDetailComponent,
     CitiesComponent,
@@ -132,8 +135,10 @@ import { StoreTypeService } from './store-types/shared/store-type.service';
   providers: [
     AuthGuard,
     AdminGuard,
+    BusinessGuard,
     AuthService,
     NotAuthenticatedGuard,
+    BusinessAccountService,
     CategoryService,
     CityService,
     ProductService,

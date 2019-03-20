@@ -2,6 +2,8 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { HomePageComponent } from './homepage/homepage.component';
+
+import { AccountComponent } from "./account/account.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -17,9 +19,10 @@ import { UnitMeasureDetailComponent } from "./unit-measures/unit-measure-detail/
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
- import { AuthGuard } from "./guards/auth.guard";
- import { AdminGuard } from "./guards/admin.guard";
- import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
+import { AdminGuard } from "./guards/admin.guard";
+import { AuthGuard } from "./guards/auth.guard";
+import { BusinessGuard } from "./guards/business.guard";
+import { NotAuthenticatedGuard } from "./guards/not-authenticated.guard";
 
 const ROUTES = RouterModule.forRoot([
     //admin area
@@ -39,6 +42,10 @@ const ROUTES = RouterModule.forRoot([
     //login/logon area
     { path: 'sign-in',   component: SignInFormComponent, canActivate: [NotAuthenticatedGuard] },
     { path: 'sign-up',   component: SignUpFormComponent, canActivate: [NotAuthenticatedGuard] },
+
+
+    //business area
+    { path: 'account', component: AccountComponent, canActivate: [BusinessGuard] },
 
     // // user area - social entity
     // { path: 'social-entities', component: SocialEntitiesComponent, canActivate: [AuthGuard]},

@@ -1,0 +1,198 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Atualizar a Conta Empresarial</h1>
+</div>
+
+<div *ngIf="!controle">
+    <h1 class="page-header">Cadastrar Conta Empresarial</h1>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="submitAccount()">
+    <div class="row">
+        <!-- Name -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+            <label for="name" class="control-label">Razão Social/Nome</label>  
+            <input type="text" formControlName="name" id="name" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+            <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+                <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+                <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Email -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('email')">
+            <label for="email" class="control-label">Email para NF</label>  
+            <input type="text" formControlName="email" id="email" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('email')"></span>
+    
+            <div *ngIf="formUtils.showFieldError('email')" class="text-danger">
+                <div *ngIf="form.get('email').errors.required">o email precisa ser preenchido!</div>
+                <div *ngIf="form.get('email').errors.minlength">o email deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('email').errors.maxlength">o email deve ter no máximo 255 caracteres</div>
+            </div>
+    
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- CEP -->
+        <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('cep')">
+            <label for="cep" class="control-label">CEP</label>  
+            <input type="text" formControlName="cep" id="cep" class="form-control" ng-model="cep" ui-br-cep-mask>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('cep')"></span>
+        
+            <div *ngIf="formUtils.showFieldError('cep')" class="text-danger">
+                <div *ngIf="form.get('cep').errors.required">o CEP precisa ser preenchido!</div>
+                <div *ngIf="form.get('cep').errors.minlength">o CEP deve ter no mínimo 5 caracteres</div>
+                <div *ngIf="form.get('cep').errors.maxlength">o CEP deve ter no máximo 8 caracteres</div>
+            </div>
+        </div>
+
+        <!-- CityName -->
+        <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('city_name')">
+            <label for="city_name" class="control-label">Nome Cidade</label>  
+            <input type="text" formControlName="city_name" id="city_name" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('city_name')"></span>
+        
+            <div *ngIf="formUtils.showFieldError('city_name')" class="text-danger">
+                <div *ngIf="form.get('city_name').errors.required">a cidade precisa ser preenchido!</div>
+                <div *ngIf="form.get('city_name').errors.minlength">a cidade deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('city_name').errors.maxlength">a cidade deve ter no máximo 255 caracteres</div>
+            </div>
+        </div>
+        
+        <!-- UF -->
+        <div class="form-group col-md-1 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('uf')">
+            <label for="uf" class="control-label">Estado</label>
+            <select formControlName="uf" id="uf" class="form-control input-lg">
+                <option  *ngFor="let ufOption of ufOptions" [value]="ufOption.value">{{ufOption.text}}</option>
+            </select>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('uf')"></span>
+            <div *ngIf="formUtils.showFieldError('uf')" class="text-danger">Este campo precisa ser preenchido</div>
+        </div>
+        
+    </div>
+    
+    <div class="row">
+        <!-- AddressName -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('address_name')">
+            <label for="address_name" class="control-label">Endereço Completo</label>  
+            <input type="text" formControlName="address_name" id="address_name" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('address_name')"></span>
+
+            <div *ngIf="formUtils.showFieldError('address_name')" class="text-danger">
+                <div *ngIf="form.get('address_name').errors.required">o endereço precisa ser preenchido!</div>
+                <div *ngIf="form.get('address_name').errors.minlength">o endereço deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('address_name').errors.maxlength">o endereço deve ter no máximo 255 caracteres</div>
+            </div>
+
+        </div>    
+    </div>
+
+    <div class="row">
+        <!-- DDDPhone -->
+        <div class="form-group col-md-1 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('ddd_phone')">
+            <label for="ddd_phone" class="control-label">DDD</label>  
+            <input type="text" formControlName="ddd_phone" id="ddd_phone" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('ddd_phone')"></span>
+
+            <div *ngIf="formUtils.showFieldError('ddd_phone')" class="text-danger">
+                <div *ngIf="form.get('ddd_phone').errors.minlength">o DDD deve ter no mínimo 1 caracteres</div>
+                <div *ngIf="form.get('ddd_phone').errors.maxlength">o DDD deve ter no máximo 2 caracteres</div>
+            </div>
+    
+        </div>    
+
+        <!-- Phone -->
+        <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('phone')">
+            <label for="phone" class="control-label">Fone Fixo</label>  
+            <input type="text" formControlName="phone" id="phone" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('phone')"></span>
+
+            <div *ngIf="formUtils.showFieldError('phone')" class="text-danger">
+                <div *ngIf="form.get('phone').errors.minlength">o fone fixo deve ter no mínimo 8 caracteres</div>
+                <div *ngIf="form.get('phone').errors.maxlength">o fone fixo deve ter no máximo 12 caracteres</div>
+            </div>
+        </div>
+
+        <!-- DDDMobile -->
+        <div class="form-group col-md-1 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('ddd_mobile')">
+            <label for="ddd_mobile" class="control-label">DDD</label>  
+            <input type="text" formControlName="ddd_mobile" id="ddd_mobile" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('ddd_mobile')"></span>
+
+            <div *ngIf="formUtils.showFieldError('ddd_mobile')" class="text-danger">
+                <div *ngIf="form.get('ddd_mobile').errors.required">o DDD precisa ser preenchido!</div>
+                <div *ngIf="form.get('ddd_mobile').errors.minlength">o DDD deve ter no mínimo 1 caracteres</div>
+                <div *ngIf="form.get('ddd_mobile').errors.maxlength">o DDD deve ter no máximo 2 caracteres</div>
+            </div>
+    
+        </div>    
+
+        <!-- Mobile -->
+        <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('mobile')">
+            <label for="mobile" class="control-label">Celular</label>  
+            <input type="text" formControlName="mobile" id="mobile" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('mobile')"></span>
+
+            <div *ngIf="formUtils.showFieldError('mobile')" class="text-danger">
+                <div *ngIf="form.get('mobile').errors.required">o celular precisa ser preenchido!</div>
+                <div *ngIf="form.get('mobile').errors.minlength">o celular deve ter no mínimo 8 caracteres</div>
+                <div *ngIf="form.get('mobile').errors.maxlength">o celular deve ter no máximo 12 caracteres</div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+        <!-- CNPJ -->
+        <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('cnpj')">
+            <label for="cnpj" class="control-label">CNPJ/CPF</label>  
+            <input type="text" formControlName="cnpj" id="cnpj" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('cnpj')"></span>
+
+            <div *ngIf="formUtils.showFieldError('cnpj')" class="text-danger">
+                <div *ngIf="form.get('cnpj').errors.required">o CNPJ/CPF precisa ser preenchido!</div>
+                <div *ngIf="form.get('cnpj').errors.minlength">o CNPJ/CPF deve ter no mínimo 9 caracteres</div>
+                <div *ngIf="form.get('cnpj').errors.maxlength">o CNPJ/CPF deve ter no máximo 18 caracteres</div>
+            </div>
+        </div>
+
+        <!-- INSCE -->
+        <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('insce')">
+            <label for="insce" class="control-label">Insc. Estadual</label>  
+            <input type="text" formControlName="insce" id="insce" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('insce')"></span>
+        </div>
+
+        <!-- INSCM -->
+        <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('inscm')">
+            <label for="inscm" class="control-label">Insc. Municipal</label>  
+            <input type="text" formControlName="inscm" id="inscm" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('inscm')"></span>
+        </div>
+            
+    </div>
+
+    <div class="row" *ngIf="controle">
+        <div class="form-group col-md-4 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('status')">
+            <label for="status" class="control-label">Status</label>  
+            <select formControlName="status" id="status" class="form-control input-lg" readonly="readonly" tabindex="-1" aria-disabled="true">
+                <option value="A">Ativo</option>
+                <option value="B">Bloqueado</option>
+                <option value="C">Cancelado</option>
+            </select>
+    
+        </div>
+        
+    </div>
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+  
+</form>
