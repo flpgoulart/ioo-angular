@@ -1,0 +1,52 @@
+<h1 class="page-header">Detalhes da Fatura: {{ billing.document }}</h1>
+
+
+<form [formGroup]="form">
+
+    <div class="row">
+        <!-- billingDocument -->
+        <div class="form-group col-md-4 has-feedback">
+            <label for="document" class="control-label">Documento</label>
+            <input type="text" formControlName="document" id="document" class="form-control" disabled>
+        </div>
+        <!-- billingDocDate -->
+        <div class="form-group col-md-2 has-feedback">
+            <label for="doc_date" class="control-label">Data Docto</label>
+            <input type="text" [matDatepicker]="doc_date" formControlName="doc_date" id="doc_date" class="form-control" disabled>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- billingRefIniDate -->
+        <div class="form-group col-md-3 has-feedback">
+            <label for="ref_ini_date" class="control-label">Período - Dt Inicial</label>
+            <input type="text" [matDatepicker]="ref_ini_date" formControlName="ref_ini_date" id="ref_ini_date" class="form-control" disabled>
+        </div>
+        <!-- billingDocDate -->
+        <div class="form-group col-md-3 has-feedback">
+            <label for="ref_end_date" class="control-label">Período - Dt Final</label>
+            <input type="text" [matDatepicker]="ref_end_date" formControlName="ref_end_date" id="ref_end_date" class="form-control" disabled>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- billingLinkDocument -->
+        <div class="form-group col-md-4 has-feedback">
+            <label for="link_document" class="control-label">Link Documento</label>
+            <input type="text" formControlName="link_document" id="link_document" class="form-control" disabled>
+        </div>
+        <!-- billingStatus -->
+        <div class="form-group col-md-2 has-feedback">
+            <label for="status" class="control-label">Status</label>
+            <select formControlName="status" id="status" class="form-control input-lg" readonly="readonly" tabindex="-1" aria-disabled="true">
+                <option value="P">Pendente</option>
+                <option value="C">Cancelado</option>
+                <option value="O">Pago</option>
+            </select>
+        </div>
+    </div>
+    
+
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+
+</form>

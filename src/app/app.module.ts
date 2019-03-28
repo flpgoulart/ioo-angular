@@ -12,6 +12,8 @@ import { HomePageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { AccountComponent } from "./account/account.component";
+import { BillingsComponent } from "./billings/billings.component";
+import { BillingDetailComponent } from "./billings/billing-detail/billing-detail.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -29,6 +31,7 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 
 // services imports
 import { AuthService } from "./shared/auth.service";
+import { BillingService } from "./billings/shared/billing.service";
 import { BusinessAccountService } from "./account/shared/business-account.service";
 import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
@@ -49,8 +52,6 @@ import { AppRoutingModule } from "./app-routing.module";
 
 // jquery plugins
 import * as $ from 'jquery';
-import * as datetimepicker from 'eonasdan-bootstrap-datetimepicker';
-window['datetimepicker'] = window['datetimepicker'] = datetimepicker;
 
 import {
   MatAutocompleteModule,
@@ -94,6 +95,8 @@ import {
     HomePageComponent,
     NavbarComponent,
     AccountComponent,
+    BillingsComponent,
+    BillingDetailComponent,
     CategoriesComponent,
     CategoryDetailComponent,
     CitiesComponent,
@@ -119,6 +122,7 @@ import {
     MatNativeDateModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
     MatCardModule,
     MatProgressSpinnerModule,
     MatMenuModule,
@@ -133,11 +137,14 @@ import {
 
   ],
   providers: [
+    //guards
     AuthGuard,
     AdminGuard,
     BusinessGuard,
     AuthService,
     NotAuthenticatedGuard,
+    //services
+    BillingService,
     BusinessAccountService,
     CategoryService,
     CityService,
@@ -145,6 +152,7 @@ import {
     StoreTypeService,
     SubcategoryService,
     UnitMeasureService,
+    //autenticate
     TokenService
   ],
   bootstrap: [AppComponent]

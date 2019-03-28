@@ -4,6 +4,8 @@ import { RouterModule } from "@angular/router";
 import { HomePageComponent } from './homepage/homepage.component';
 
 import { AccountComponent } from "./account/account.component";
+import { BillingsComponent } from "./billings/billings.component";
+import { BillingDetailComponent } from "./billings/billing-detail/billing-detail.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -46,6 +48,8 @@ const ROUTES = RouterModule.forRoot([
 
     //business area
     { path: 'account', component: AccountComponent, canActivate: [BusinessGuard] },
+    { path: 'billings', component: BillingsComponent, canActivate: [BusinessGuard] },
+    { path: 'billings/:id', component: BillingDetailComponent, canActivate: [BusinessGuard] },
 
     // // user area - social entity
     // { path: 'social-entities', component: SocialEntitiesComponent, canActivate: [AuthGuard]},

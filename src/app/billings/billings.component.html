@@ -1,0 +1,54 @@
+<h1 class="page-header">Lista de Faturas</h1>
+<div class="container mat-elevation-z8">
+
+    <mat-table #table [dataSource]="dataSource" matSort > 
+
+        <!-- Document Column -->
+        <ng-container matColumnDef="document">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Documento</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.document}} </mat-cell>
+        </ng-container>
+
+        <!-- doc_date Column -->
+        <ng-container matColumnDef="doc_date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Referência </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.doc_date | date:'dd/MM/yyyy' }} </mat-cell>
+        </ng-container>
+
+        <!-- ref_ini_date Column -->
+        <ng-container matColumnDef="ref_ini_date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Data Início </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ref_ini_date | date:'dd/MM/yyyy' }} </mat-cell>
+        </ng-container>
+
+        <!-- ref_ini_date Column -->
+        <ng-container matColumnDef="ref_end_date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Data Fim </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.ref_end_date | date:'dd/MM/yyyy' }} </mat-cell>
+        </ng-container>
+
+        <!-- ref_ini_date Column -->
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{formatStatus(row.status)}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <a [routerLink]="['/billings', row.id]" class="btn btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    Detalhes
+                </a>
+            </mat-cell>
+        </ng-container>
+    
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    
+</div>
+
