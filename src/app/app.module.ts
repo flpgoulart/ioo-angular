@@ -14,6 +14,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AccountComponent } from "./account/account.component";
 import { BillingsComponent } from "./billings/billings.component";
 import { BillingDetailComponent } from "./billings/billing-detail/billing-detail.component";
+import { BusinessesComponent } from "./businesses/businesses.component";
+import { BusinessDetailComponent } from "./businesses/business-detail/business-detail.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -32,6 +34,7 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component'
 // services imports
 import { AuthService } from "./shared/auth.service";
 import { BillingService } from "./billings/shared/billing.service";
+import { BusinessService } from "./businesses/shared/business.service";
 import { BusinessAccountService } from "./account/shared/business-account.service";
 import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
@@ -97,6 +100,8 @@ import {
     AccountComponent,
     BillingsComponent,
     BillingDetailComponent,
+    BusinessesComponent,
+    BusinessDetailComponent,
     CategoriesComponent,
     CategoryDetailComponent,
     CitiesComponent,
@@ -145,6 +150,7 @@ import {
     NotAuthenticatedGuard,
     //services
     BillingService,
+    BusinessService,
     BusinessAccountService,
     CategoryService,
     CityService,

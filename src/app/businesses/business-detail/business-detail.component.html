@@ -1,0 +1,74 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Detalhes da Empresa: {{ business.name }}</h1>
+</div>
+
+<div *ngIf="!controle">
+    <h1 class="page-header">Adicionar uma nova Empresa</h1>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="submitBusiness()">
+
+    <div class="row">
+        <!-- businessName -->
+        <div class="form-group col-md-12 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+        <label for="name" class="control-label">Nome</label>
+        <input type="text" formControlName="name" id="name" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+        <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+            <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+            <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+            <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+        </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- businessAboutUs -->
+        <div class="form-group col-md-12 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('about_us')">
+            <label for="about_us" class="control-label">Sobre Nós</label>
+            <textarea formControlName="about_us" id="about_us" class="form-control input-lg" rows="4" ></textarea>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('about_us')"></span>
+            <div *ngIf="formUtils.showFieldError('about_us')" class="text-danger">
+                <div *ngIf="form.get('about_us').errors.required">precisa ser preenchido!</div>
+                <div *ngIf="form.get('about_us').errors.minlength">deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('about_us').errors.maxlength">deve ter no máximo 255 caracteres</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- businessContactInfo -->
+        <div class="form-group col-md-12 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('contact_info')">
+            <label for="contact_info" class="control-label">Informações de Contato</label>
+            <textarea formControlName="contact_info" id="contact_info" class="form-control input-lg" rows="4" ></textarea>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('contact_info')"></span>
+            <div *ngIf="formUtils.showFieldError('contact_info')" class="text-danger">
+                <div *ngIf="form.get('contact_info').errors.required">precisa ser preenchido!</div>
+                <div *ngIf="form.get('contact_info').errors.minlength">deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('contact_info').errors.maxlength">deve ter no máximo 255 caracteres</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- businessUrlSite -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('url_site')">
+            <label for="url_site" class="control-label">URL Site</label>
+            <input type="text" formControlName="url_site" id="url_site" class="form-control">
+        </div>
+
+        <!-- businessUrlFacebook -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('url_facebook')">
+            <label for="url_facebook" class="control-label">Facebook</label>
+            <input type="text" formControlName="url_facebook" id="url_facebook" class="form-control">
+        </div>
+            
+
+    </div>
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+
+</form>
