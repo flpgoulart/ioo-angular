@@ -1,0 +1,59 @@
+<h1 class="page-header">Lista de Lojas</h1>
+<a [routerLink]="['/stores', 0]" class="btn btn-info">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Adicionar
+</a>
+
+<div class="container mat-elevation-z8">
+
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+        </mat-form-field>
+    </div>
+            
+    <mat-table #table [dataSource]="dataSource" matSort >
+
+        <!-- Business Name Column -->
+        <ng-container matColumnDef="business_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Empresa</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.business_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Loja </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <!-- City Column -->
+        <ng-container matColumnDef="city_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Cidade/UF </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.city_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{formatStatus(row.status)}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <a [routerLink]="['/stores', row.id]" class="btn btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    Detalhes
+                </a>
+            </mat-cell>
+        </ng-container>
+    
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    
+</div>
+

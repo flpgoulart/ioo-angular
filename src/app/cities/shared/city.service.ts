@@ -82,6 +82,16 @@ export class CityService{
     }
 
 
+    public searchByUf(term: string): Observable<City[]> {
+        let url = `${this.citiesUrl}?q[uf_cont]=${term}`;
+
+        return this.tokenHttp.get(url).pipe(
+            catchError(this.handleErrors),
+            map((response: Response ) => this.responseToCities(response) )
+        )
+            
+    }
+
     private handleErrors(error: Response){
         console.log("SALVANDO O ERRO NUM ARQUIVO DE LOG - DETALHES DO ERRO => ", error );
         return throwError(error);

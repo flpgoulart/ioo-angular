@@ -14,6 +14,8 @@ import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
 import { ProductsComponent } from "./products/products.component";
 import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
+import { StoresComponent } from "./stores/stores.component";
+import { StoreDetailComponent } from "./stores/store-detail/store-detail.component";
 import { StoreTypesComponent } from "./store-types/store-types.component";
 import { StoreTypeDetailComponent } from "./store-types/store-type-detail/store-type-detail.component";
 import { SubcategoriesComponent } from "./subcategories/subcategories.component";
@@ -54,6 +56,8 @@ const ROUTES = RouterModule.forRoot([
     { path: 'businesses/:id', component: BusinessDetailComponent, canActivate: [BusinessGuard] },
     { path: 'billings', component: BillingsComponent, canActivate: [BusinessGuard] },
     { path: 'billings/:id', component: BillingDetailComponent, canActivate: [BusinessGuard] },
+    { path: 'stores', component: StoresComponent, canActivate: [BusinessGuard] },
+    { path: 'stores/:id', component: StoreDetailComponent, canActivate: [BusinessGuard] },
 
     // // user area - social entity
     // { path: 'social-entities', component: SocialEntitiesComponent, canActivate: [AuthGuard]},

@@ -24,6 +24,8 @@ import { ProductsComponent } from "./products/products.component";
 import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
 import { SubcategoriesComponent } from "./subcategories/subcategories.component";
 import { SubcategoryDetailComponent } from "./subcategories/subcategory-detail/subcategory-detail.component";
+import { StoresComponent } from "./stores/stores.component";
+import { StoreDetailComponent } from "./stores/store-detail/store-detail.component";
 import { StoreTypesComponent } from './store-types/store-types.component';
 import { StoreTypeDetailComponent } from './store-types/store-type-detail/store-type-detail.component';
 import { UnitMeasuresComponent } from "./unit-measures/unit-measures.component";
@@ -40,6 +42,7 @@ import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
 import { ProductService } from "./products/shared/product.service";
 import { SubcategoryService } from "./subcategories/shared/subcategory.service";
+import { StoreService } from "./stores/shared/store.service";
 import { StoreTypeService } from './store-types/shared/store-type.service';
 import { UnitMeasureService } from "./unit-measures/shared/unit-measure.service";
 import { TokenService } from "./shared/token.service";
@@ -108,6 +111,8 @@ import {
     CityDetailComponent,
     ProductsComponent,
     ProductDetailComponent,
+    StoresComponent,
+    StoreDetailComponent,
     StoreTypesComponent,
     StoreTypeDetailComponent,
     SubcategoriesComponent,
@@ -155,6 +160,7 @@ import {
     CategoryService,
     CityService,
     ProductService,
+    StoreService,
     StoreTypeService,
     SubcategoryService,
     UnitMeasureService,

@@ -1,0 +1,163 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Detalhes da Loja: {{ store.name }}</h1>
+</div>
+
+<div *ngIf="!controle">
+    <h1 class="page-header">Adicionar uma nova Loja</h1>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="submitStore()">
+
+    <div class="row">
+        <!-- storeName -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+            <label for="name" class="control-label">Nome</label>
+            <input type="text" formControlName="name" id="name" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+
+            <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+                <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+                <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+            </div>
+        </div>
+
+        <!-- storeStatus -->
+        <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('status')">
+            <label for="status" class="control-label">Status</label>
+            <select formControlName="status" id="status" class="form-control input-lg">
+                <option value="A">Ativo</option>
+                <option value="I">Inativo</option>
+            </select>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('status')"></span>
+            <div *ngIf="formUtils.showFieldError('status')" class="text-danger">
+                <div *ngIf="form.get('status').errors.required">o status precisa ser preenchido!</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- new data form -->
+        <!-- storeBusinessId -->
+        <div *ngIf="!controle" class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('business_id')">
+            <label for="business_id" class="control-label">Empresa</label>
+            <select formControlName="business_id" id="business_id" class="form-control input-lg">
+                <option  *ngFor="let business of businesses" [value]="business.id">{{business.name}}</option>
+            </select>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('business_id')"></span>
+            <div *ngIf="formUtils.showFieldError('business_id')" class="text-danger">
+                <div *ngIf="form.get('business_id').errors.required">a empresa precisa ser preenchida!</div>
+            </div>
+        </div>
+            
+        <!-- storeStoreTypeId -->
+        <div *ngIf="!controle" class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('store_type_id')">
+            <label for="store_type_id" class="control-label">Tipo Loja</label>
+            <select formControlName="store_type_id" id="store_type_id" class="form-control input-lg">
+                <option  *ngFor="let store_type of store_types" [value]="store_type.id">{{store_type.name}}</option>
+            </select>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('store_type_id')"></span>
+            <div *ngIf="formUtils.showFieldError('store_type_id')" class="text-danger">
+                <div *ngIf="form.get('store_type_id').errors.required">o tipo de loja precisa ser preenchida!</div>
+            </div>
+        </div>
+
+        <!-- edit data form -->
+        <!-- storeBusinessName -->
+        <div *ngIf="controle" class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('business_name')">
+            <label for="business_name" class="control-label">Empresa</label>
+            <input type="text" formControlName="business_name" id="business_name" class="form-control" readonly>  
+        </div>
+        <!-- storeStoreTypeName -->
+        <div *ngIf="controle" class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('store_type_name')">
+            <label for="store_type_name" class="control-label">Tipo Loja</label>
+            <input type="text" formControlName="store_type_name" id="store_type_name" class="form-control" readonly>  
+        </div>    
+    </div>
+    
+
+    <div class="row">
+        <!-- new data form -->
+        <!-- storeUF -->
+        <div *ngIf="!controle" class="form-group col-md-3 has-feedback">
+            <label for="uf" class="control-label">Estado</label>
+            <select formControlName="uf" id="uf" #uf class="form-control input-lg"  (change)="listCities(uf.value)">
+                <option  *ngFor="let ufOption of ufOptions" [value]="ufOption.value">{{ufOption.text}}</option>
+            </select>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('uf')"></span>
+            <div *ngIf="formUtils.showFieldError('uf')" class="text-danger">Este campo precisa ser preenchido</div>
+        </div>
+
+        <!-- storeCityId -->
+        <div *ngIf="!controle" class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('city_id')">
+            <label for="city_id" class="control-label">Cidade</label>
+
+            <select formControlName="city_id" id="city_id" class="form-control input-lg">
+                <option  *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+            </select>
+
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('city_id')"></span>
+
+            <div *ngIf="formUtils.showFieldError('city_id')" class="text-danger">
+                <div *ngIf="form.get('city_id').errors.required">a cidade precisa ser preenchida!</div>
+            </div>
+        </div>
+
+
+        <!-- edit data form -->
+        <!-- storeCityId -->
+        <div *ngIf="controle" class="form-group col-md-9 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('city_id')">
+            <label for="city_name" class="control-label">Cidade/UF</label>
+            <input type="text" formControlName="city_name" id="city_name" class="form-control" readonly>  
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- storeCep -->
+        <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('cep')">
+            <label for="cep" class="control-label">CEP</label>
+            <input type="text" formControlName="cep" id="cep" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('cep')"></span>
+
+            <div *ngIf="formUtils.showFieldError('cep')" class="text-danger">
+                <div *ngIf="form.get('cep').errors.required">o CEP precisa ser preenchido!</div>
+                <div *ngIf="form.get('cep').errors.minlength">o CEP deve ter no mínimo 5 caracteres</div>
+                <div *ngIf="form.get('cep').errors.maxlength">o CEP deve ter no máximo 8 caracteres</div>
+            </div>
+        </div>
+
+        <!-- storeAddressName -->
+        <div class="form-group col-md-6 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('address_name')">
+            <label for="address_name" class="control-label">Endereço</label>
+            <input type="text" formControlName="address_name" id="address_name" class="form-control">
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('address_name')"></span>
+
+            <div *ngIf="formUtils.showFieldError('address_name')" class="text-danger">
+                <div *ngIf="form.get('address_name').errors.required">o Endereço precisa ser preenchido!</div>
+                <div *ngIf="form.get('address_name').errors.minlength">o Endereço deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('address_name').errors.maxlength">o Endereço deve ter no máximo 255 caracteres</div>
+            </div>
+        </div>
+    
+    </div>
+
+    <div class="row">
+        <!-- storeContactInfo -->
+        <div class="form-group col-md-9 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('contact_info')">
+            <label for="contact_info" class="control-label">Informações de Contato</label>
+            <textarea formControlName="contact_info" id="contact_info" class="form-control input-lg" rows="4" ></textarea>
+            <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('contact_info')"></span>
+            <div *ngIf="formUtils.showFieldError('contact_info')" class="text-danger">
+                <div *ngIf="form.get('contact_info').errors.required">precisa ser preenchido!</div>
+                <div *ngIf="form.get('contact_info').errors.minlength">deve ter no mínimo 2 caracteres</div>
+                <div *ngIf="form.get('contact_info').errors.maxlength">deve ter no máximo 255 caracteres</div>
+            </div>  
+        </div>
+    </div>
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+
+</form>
