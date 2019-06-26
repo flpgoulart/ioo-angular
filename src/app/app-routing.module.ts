@@ -8,6 +8,8 @@ import { BillingsComponent } from "./billings/billings.component";
 import { BillingDetailComponent } from "./billings/billing-detail/billing-detail.component";
 import { BusinessesComponent } from "./businesses/businesses.component";
 import { BusinessDetailComponent } from "./businesses/business-detail/business-detail.component";
+import { CampaignsComponent } from "./campaigns/campaigns.component";
+import { CampaignDetailComponent } from "./campaigns/campaign-detail/campaign-detail.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -58,6 +60,8 @@ const ROUTES = RouterModule.forRoot([
     { path: 'billings/:id', component: BillingDetailComponent, canActivate: [BusinessGuard] },
     { path: 'stores', component: StoresComponent, canActivate: [BusinessGuard] },
     { path: 'stores/:id', component: StoreDetailComponent, canActivate: [BusinessGuard] },
+    { path: 'campaigns', component: CampaignsComponent, canActivate: [BusinessGuard] },
+    { path: 'campaigns/:id', component: CampaignDetailComponent, canActivate: [BusinessGuard] },
 
     // // user area - social entity
     // { path: 'social-entities', component: SocialEntitiesComponent, canActivate: [AuthGuard]},

@@ -16,6 +16,8 @@ import { BillingsComponent } from "./billings/billings.component";
 import { BillingDetailComponent } from "./billings/billing-detail/billing-detail.component";
 import { BusinessesComponent } from "./businesses/businesses.component";
 import { BusinessDetailComponent } from "./businesses/business-detail/business-detail.component";
+import { CampaignsComponent } from "./campaigns/campaigns.component";
+import { CampaignDetailComponent } from "./campaigns/campaign-detail/campaign-detail.component";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
@@ -38,11 +40,13 @@ import { AuthService } from "./shared/auth.service";
 import { BillingService } from "./billings/shared/billing.service";
 import { BusinessService } from "./businesses/shared/business.service";
 import { BusinessAccountService } from "./account/shared/business-account.service";
+import { CampaignService } from "./campaigns/shared/campaign.service";
 import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
 import { ProductService } from "./products/shared/product.service";
 import { SubcategoryService } from "./subcategories/shared/subcategory.service";
 import { StoreService } from "./stores/shared/store.service";
+import { StoreCampaignService } from "./campaigns/shared/store-campaign.service";
 import { StoreTypeService } from './store-types/shared/store-type.service';
 import { UnitMeasureService } from "./unit-measures/shared/unit-measure.service";
 import { TokenService } from "./shared/token.service";
@@ -105,6 +109,8 @@ import {
     BillingDetailComponent,
     BusinessesComponent,
     BusinessDetailComponent,
+    CampaignsComponent,
+    CampaignDetailComponent,
     CategoriesComponent,
     CategoryDetailComponent,
     CitiesComponent,
@@ -157,10 +163,12 @@ import {
     BillingService,
     BusinessService,
     BusinessAccountService,
+    CampaignService,
     CategoryService,
     CityService,
     ProductService,
     StoreService,
+    StoreCampaignService,
     StoreTypeService,
     SubcategoryService,
     UnitMeasureService,

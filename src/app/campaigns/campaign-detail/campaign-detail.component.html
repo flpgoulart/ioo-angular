@@ -1,0 +1,168 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Detalhes da Campanha: {{ campaign.name }}</h1>
+</div>
+
+<div *ngIf="!controle">
+    <h1 class="page-header">Adicionar uma nova Campanha</h1>
+</div>
+    
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="camp-tab" data-toggle="tab" href="#camp" role="tab" aria-controls="camp" aria-selected="true">Dados Campanha</a>
+    </li>
+    <li class="nav-item" *ngIf="controle">
+        <a class="nav-link" id="store-tab" data-toggle="tab" href="#store" role="tab" aria-controls="store" aria-selected="false">Lojas da Campanha</a>
+    </li>
+    <li class="nav-item" *ngIf="controle">
+        <a class="nav-link" id="offer-tab" data-toggle="tab" href="#offer" role="tab" aria-controls="offer" aria-selected="false">Ofertas da Campanha</a>
+    </li>
+</ul>
+
+
+
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="camp" role="tabpanel" aria-labelledby="camp-tab">
+        <form [formGroup]="form" (ngSubmit)="submitCampaign()">
+            <div class="row">
+                <!-- campaignName -->
+                <div class="form-group col-md-8 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+                    <label for="name" class="control-label">Nome</label>
+                    <input type="text" formControlName="name" id="name" class="form-control">
+                    <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+        
+                    <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+                        <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+                        <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+                        <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+                    </div>
+                </div>
+        
+                <!-- campaignStatus -->
+                <div class="form-group col-md-2 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('status')">
+                    <label for="status" class="control-label">Status</label>
+                    <select formControlName="status" id="status" class="form-control input-lg">
+                        <option value="A">Ativo</option>
+                        <option value="I">Inativo</option>
+                    </select>
+                    <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('status')"></span>
+                    <div *ngIf="formUtils.showFieldError('status')" class="text-danger">
+                        <div *ngIf="form.get('status').errors.required">o status precisa ser preenchido!</div>
+                    </div>
+                </div>
+                
+            </div>
+        
+            <div class="row">
+                <!-- campaignStartDate -->
+                <div class="form-group col-md-5 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('start_date')">
+                    <label for="start_date" class="control-label">Início da Campanha</label>
+                    <input type="text" [matDatepicker]="start_date" formControlName="start_date" id="start_date" class="form-control">
+                    <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+                    <mat-datepicker #start_date></mat-datepicker>
+        
+                    <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('start_date')"></span>
+        
+                    <div *ngIf="formUtils.showFieldError('start_date')" class="text-danger">
+                        <div *ngIf="form.get('start_date').errors.required">o início precisa ser preenchido!</div>
+                    </div>
+                </div>
+        
+                <!-- campaignEndDate -->
+                <div class="form-group col-md-5 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('end_date')">
+                    <label for="end_date" class="control-label">Fim da Campanha</label>
+                    <input type="text" [matDatepicker]="end_date" formControlName="end_date" id="end_date" class="form-control">
+                    <mat-datepicker-toggle matSuffix [for]="end_date"></mat-datepicker-toggle>
+                    <mat-datepicker #end_date></mat-datepicker>
+        
+                    <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('end_date')"></span>
+        
+                    <div *ngIf="formUtils.showFieldError('end_date')" class="text-danger">
+                        <div *ngIf="form.get('end_date').errors.required">o fim precisa ser preenchido!</div>
+                    </div>    
+                </div>
+        
+            </div>
+        
+            <div class="row">
+                <!-- campaignDisclaimer -->
+                <div class="form-group col-md-10 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('disclaimer')">
+                    <label for="disclaimer" class="control-label">Aviso Legal/Regras</label>
+                    <textarea formControlName="disclaimer" id="disclaimer" class="form-control input-lg" rows="4" ></textarea>
+                    <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('disclaimer')"></span>
+                    <div *ngIf="formUtils.showFieldError('disclaimer')" class="text-danger">
+                        <div *ngIf="form.get('disclaimer').errors.required">precisa ser preenchido!</div>
+                        <div *ngIf="form.get('disclaimer').errors.minlength">deve ter no mínimo 2 caracteres</div>
+                        <div *ngIf="form.get('disclaimer').errors.maxlength">deve ter no máximo 255 caracteres</div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+
+            <a [routerLink]="['/campaigns']" class="btn btn-default">
+                Voltar
+            </a>
+
+            
+        </form>
+    </div>
+    <div class="tab-pane fade" id="store" role="tabpanel" aria-labelledby="store-tab">
+
+        <form [formGroup]="formStoreCampaign" (ngSubmit)="submitStoreCampaign()">
+            <div class="row">
+                <!-- storeCampaignStore -->
+                <div class="form-group col-md-10 has-feedback" [ngClass]="formUtilsStoreCampaign.fieldClassForErrorOrSuccess('store_id')">
+                    <label for="store_id" class="control-label">Selecione a Loja para incluir:</label>
+
+                    <select formControlName="store_id" id="store_id" class="form-control input-lg">
+                        <option  *ngFor="let store of stores" [value]="store.id">{{store.name}}</option>
+                    </select>
+                    
+                    <span class="glyphicon form-control-feedback" [ngClass]="formUtilsStoreCampaign.iconClassForErrorOrSuccess('store_id')"></span>
+        
+                    <div *ngIf="formUtilsStoreCampaign.showFieldError('store_id')" class="text-danger">
+                        <div *ngIf="formStoreCampaign.get('store_id').errors.required">a loja precisa ser preenchida!</div>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button [disabled]="formStoreCampaign.invalid" type="submit" class="btn btn-success">Adicionar</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+ 
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Loja</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let storeCampaign of storeCampaigns">
+                    <td>{{ storeCampaign.store_name }}</td>
+                    <td>
+                        {{ statusStoreCampaign(storeCampaign.status) }} 
+                        <span *ngIf="storeCampaign.status == 'I'" style="color:green">
+                            <button class="btn btn-success" (click)="activeStore(storeCampaign)">
+                                <span class="glyphicon glyphicon-trash"></span> Ativar
+                            </button>
+                        </span>
+                        <span *ngIf="storeCampaign.status == 'A'" style="color:red">
+                            <button class="btn btn-danger" (click)="inactiveStore(storeCampaign)">
+                                <span class="glyphicon glyphicon-trash"></span> Inativar
+                            </button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+
+    </div>
+    <div class="tab-pane fade" id="offer" role="tabpanel" aria-labelledby="offer-tab">Teste 3</div>
+</div>
