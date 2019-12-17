@@ -24,6 +24,18 @@ export class CampaignService{
         )
     }
 
+    public getAllActive(): Observable<Campaign[]> {
+        let term = 'A'; // apenas as ativas
+        let url = `${this.campaignsUrl}?q[status_eq]=${term}`;
+
+        return this.tokenHttp.get(url).pipe(
+            catchError(this.handleErrors),
+            map((response: Response ) => this.responseToCampaigns(response) )
+        )
+            
+    }
+
+
 
     public getById(id: number): Observable<Campaign> {
         let url = `${this.campaignsUrl}/${id}`;

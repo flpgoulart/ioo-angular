@@ -22,6 +22,8 @@ import { CategoriesComponent } from "./categories/categories.component";
 import { CategoryDetailComponent } from "./categories/category-detail/category-detail.component";
 import { CitiesComponent } from "./cities/cities.component";
 import { CityDetailComponent } from "./cities/city-detail/city-detail.component";
+import { OffersComponent } from "./offers/offers.component";
+import { OfferDetailComponent } from "./offers/offer-detail/offer-detail.component";
 import { ProductsComponent } from "./products/products.component";
 import { ProductDetailComponent } from "./products/product-detail/product-detail.component";
 import { SubcategoriesComponent } from "./subcategories/subcategories.component";
@@ -43,6 +45,7 @@ import { BusinessAccountService } from "./account/shared/business-account.servic
 import { CampaignService } from "./campaigns/shared/campaign.service";
 import { CategoryService } from "./categories/shared/category.service";
 import { CityService } from "./cities/shared/city.service";
+import { OfferService } from "./offers/shared/offer.service";
 import { ProductService } from "./products/shared/product.service";
 import { SubcategoryService } from "./subcategories/shared/subcategory.service";
 import { StoreService } from "./stores/shared/store.service";
@@ -115,6 +118,8 @@ import {
     CategoryDetailComponent,
     CitiesComponent,
     CityDetailComponent,
+    OffersComponent,
+    OfferDetailComponent,
     ProductsComponent,
     ProductDetailComponent,
     StoresComponent,
@@ -166,6 +171,7 @@ import {
     CampaignService,
     CategoryService,
     CityService,
+    OfferService,
     ProductService,
     StoreService,
     StoreCampaignService,

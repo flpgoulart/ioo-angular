@@ -1,0 +1,67 @@
+
+<h1 class="page-header">Lista de Ofertas</h1>
+<a [routerLink]="['/offers', 0]" class="btn btn-info">
+    <span class="glyphicon glyphicon-info-sign"></span>
+    Adicionar
+</a>
+
+<div class="container mat-elevation-z8">
+
+    <div class="header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pesquisar">
+        </mat-form-field>
+    </div>
+            
+
+    <mat-table #table [dataSource]="dataSource" matSort >
+
+        <!-- Campaign Name Column -->
+        <ng-container matColumnDef="campaign_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Campanha</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.campaign_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Produto Oferta </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Brand Name Column -->
+        <ng-container matColumnDef="brand_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Marca Produto </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.brand_name}} </mat-cell>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{formatStatus(row.status)}} </mat-cell>
+        </ng-container>
+
+        <!-- Offer Value Column -->
+        <ng-container matColumnDef="offer_value">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Valor Oferta </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{getFormattedPrice(row.offer_value)}} </mat-cell>
+        </ng-container>
+        
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+            <mat-cell *matCellDef="let row"> 
+                <a [routerLink]="['/offers', row.id]" class="btn btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    Detalhes
+                </a>
+            </mat-cell>
+        </ng-container>
+    
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    
+</div>

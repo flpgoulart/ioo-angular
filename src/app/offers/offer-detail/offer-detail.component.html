@@ -1,0 +1,162 @@
+<div *ngIf="controle">
+    <h1 class="page-header">Detalhes da Oferta: {{ offer.name }}</h1>
+  </div>
+  
+  <div *ngIf="!controle">
+    <h1 class="page-header">Adicionar uma nova Oferta</h1>
+  </div>
+  
+  
+  <form [formGroup]="form" (ngSubmit)="submitOffer()">
+
+
+    <div class="row">
+      <!-- offerCampaign -->
+      <div *ngIf="!controle" class="form-group col-md-9 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('campaign_id')">
+
+        <label for="campaign_id" class="control-label">Campanha Ativa</label>
+
+        <select formControlName="campaign_id" id="campaign_id" class="form-control input-lg">
+          <option  *ngFor="let campaign of campaigns" [value]="campaign.id">{{campaign.name}}</option>
+        </select>
+
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('campaign_id')"></span>
+
+        <div *ngIf="formUtils.showFieldError('campaign_id')" class="text-danger">
+          <div *ngIf="form.get('campaign_id').errors.required">a Campanha precisa ser preenchida!</div>
+        </div>
+
+      </div>
+
+      <!-- offerCampaignName -->
+      <div *ngIf="controle" class="form-group col-md-9 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('campaign_name')">
+        <label for="campaign_name" class="control-label">Campanha</label>
+        <input type="text" formControlName="campaign_name" id="campaign_name" class="form-control" readonly>
+        <input type="hidden" formControlName="campaign_id" id="campaign_id">
+      </div>
+
+    </div>
+
+    <div class="row">
+      <!-- offerProductId -->
+      <div class="form-group col-md-9 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('product_id')">
+          
+        <label for="product_id" class="control-label">Produto Referente</label>
+
+        <select formControlName="product_id" id="product_id" class="form-control input-lg">
+            <option  *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+        </select>
+
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('product_id')"></span>
+
+        <div *ngIf="formUtils.showFieldError('product_id')" class="text-danger">
+            <div *ngIf="form.get('product_id').errors.required">o Produto precisa ser preenchido!</div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <div class="row">
+      <!-- offerName -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('name')">
+        <label for="name" class="control-label">Nome Oferta</label>
+        <input type="text" formControlName="name" id="name" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('name')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('name')" class="text-danger">
+          <div *ngIf="form.get('name').errors.required">o nome precisa ser preenchido!</div>
+          <div *ngIf="form.get('name').errors.minlength">o nome deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('name').errors.maxlength">o nome deve ter no máximo 255 caracteres</div>
+        </div>
+      </div>
+
+      <!-- productBrandName -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('brand_name')">
+        <label for="brand_name" class="control-label">Marca Produto</label>
+        <input type="text" formControlName="brand_name" id="brand_name" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('brand_name')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('brand_name')" class="text-danger">
+          <div *ngIf="form.get('brand_name').errors.required">a marca precisa ser preenchida!</div>
+          <div *ngIf="form.get('brand_name').errors.minlength">a marca deve ter no mínimo 2 caracteres</div>
+          <div *ngIf="form.get('brand_name').errors.maxlength">a marca deve ter no máximo 255 caracteres</div>
+        </div>
+      </div>
+
+      <!-- offerStatus -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('status')">
+        <label for="status" class="control-label">Status</label>
+
+        <select formControlName="status" id="status" class="form-control input-lg">
+          <option value="A">Ativo</option>
+          <option value="I">Inativo</option>
+        </select>
+  
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('status')"></span>
+        <div *ngIf="formUtils.showFieldError('status')" class="text-danger">
+            <div *ngIf="form.get('status').errors.required">o status precisa ser preenchido!</div>
+        </div>
+    
+      </div>
+
+    </div>
+
+    <div class="row">
+      <!-- offerUnitMeasure -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('unit_measure_id')">
+        <label for="unit_measure_id" class="control-label">Unidade de Medida</label>
+
+        <select formControlName="unit_measure_id" id="unit_measure_id" class="form-control input-lg">
+            <option  *ngFor="let unitMeasure of unitMeasures" [value]="unitMeasure.id">{{unitMeasure.name}}</option>
+        </select>
+
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('unit_measure_id')"></span>
+
+        <div *ngIf="formUtils.showFieldError('unit_measure_id')" class="text-danger">
+            <div *ngIf="form.get('unit_measure_id').errors.required">a Unidade de Medida precisa ser preenchida!</div>
+        </div>
+      </div>
+
+      <!-- offerProductValue -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('product_value')">
+        <label for="product_value" class="control-label">Valor Produto</label>
+        <input type="text" formControlName="product_value" id="product_value" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('product_value')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('product_value')" class="text-danger">
+          <div *ngIf="form.get('product_value').errors.required">o valor do produto precisa ser preenchido!</div>
+        </div>
+      </div>
+      
+      <!-- offerOfferValue -->
+      <div class="form-group col-md-3 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('offer_value')">
+        <label for="offer_value" class="control-label">Valor Oferta</label>
+        <input type="text" formControlName="offer_value" id="offer_value" class="form-control">
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('offer_value')"></span>
+  
+        <div *ngIf="formUtils.showFieldError('offer_value')" class="text-danger">
+          <div *ngIf="form.get('offer_value').errors.required">o valor da oferta precisa ser preenchido!</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <!-- offerDisclaimer -->
+      <div class="form-group col-md-9 has-feedback" [ngClass]="formUtils.fieldClassForErrorOrSuccess('disclaimer')">
+        <label for="disclaimer" class="control-label">Aviso Legal Oferta</label>
+        <textarea formControlName="disclaimer" id="disclaimer" class="form-control input-lg" rows="4" ></textarea>
+        <span class="glyphicon form-control-feedback" [ngClass]="formUtils.iconClassForErrorOrSuccess('disclaimer')"></span>
+      </div>
+
+    </div>
+
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success">Salvar</button>
+    <button class="btn btn-default" type="button" (click)="goBack()">Voltar</button>
+  
+  </form>
+  
+  
